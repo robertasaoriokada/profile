@@ -1,0 +1,92 @@
+.comment {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.commentBox {
+  flex: 1;
+}
+
+.commentContent {
+  background-color: var(--gray-700);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.commentContent header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.authorAndTime {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+.authorAndTime strong {
+  font-size: 0.875rem;
+}
+
+.authorAndTime time {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+
+.commentContent .btns {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.commentContent .btns button {
+  background-color: transparent;
+  color: var(--white);
+  line-height: 0;
+  border: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 0.1s;
+}
+
+.commentContent .btns button .editar {
+  transition: color 0.1s;
+}
+
+.commentContent .btns button:hover {
+  color: var(--red-500);
+}
+
+.commentContent p {
+  line-height: 1.6;
+  margin-top: 1rem;
+  color: var(--gray-300);
+}
+
+.commentBox footer {
+  margin-top: 1rem;
+}
+
+.commentBox footer button {
+  background-color: transparent;
+  border: 0;
+  color: var(--gray-400);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 1px;
+}
+
+.commentBox footer button:hover {
+  color: var(--green-300);
+}
+
+.commentBox footer button svg {
+  margin-right: 0.5rem;
+}
+
+.commentBox footer button span::before {
+  content: "\2022";
+  padding: 0 0.25rem;
+}

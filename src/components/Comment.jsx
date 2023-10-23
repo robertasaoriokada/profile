@@ -1,8 +1,20 @@
+import { useState } from "react";
 import Avatar from "./Avatar";
 import styles from "./Comment.module.css";
 import * as Icon from "@phosphor-icons/react";
 
-function Comment() {
+function Comment({ content, onDeleteComment, onEditComment }) {
+  const [pressEditButton, setPressEditButton] = useState(false);
+  const showEditCommentCamp = () => {
+    console.log(pressEditButton);
+    setPressEditButton(true);
+  };
+  const handleDeleteComment = () => {
+    onDeleteComment(content);
+  };
+  const handleEditComment = () => {
+    onEditComment(content);
+  };
   return (
     <div className={styles.comment}>
       <Avatar
@@ -17,15 +29,40 @@ function Comment() {
               <time>Cerca de 1h atrás</time>
             </div>
             <div className={styles.btns}>
-              <button title="Editar" className={styles.editar}>
+              <button
+                onClick={showEditCommentCamp}
+                title="Editar"
+                className={styles.editar}
+              >
                 <Icon.Pencil size={20} />
               </button>
-              <button title="excluir" className={styles.excluir}>
+              <button
+                onClick={handleDeleteComment}
+                title="Excluir"
+                className={styles.excluir}
+              >
                 <Icon.Trash size={20} />
               </button>
             </div>
           </header>
-          <p>Conteúdo do comentário</p>
+          <div>
+            {pressEditButton ? (
+              <form className={styles.editForm}>
+                <textarea name="editComment" className={styles.editCamp}>
+                  {content}
+                </textarea>
+                <button
+                  type="submit"
+                  className={styles.buttonToSendEditedComment}
+                  onClick={handleEditComment}
+                >
+                  Editar
+                </button>
+              </form>
+            ) : (
+              <p>{content}</p>
+            )}
+          </div>
         </div>
         <footer>
           <button>

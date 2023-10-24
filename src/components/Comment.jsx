@@ -60,7 +60,7 @@ function Comment({ content, onDeleteComment, onEditComment }) {
             {pressEditButton ? (
               <form onSubmit={handleEditComment} className={styles.editForm}>
                 <textarea name="editComment" className={styles.editCamp}>
-                  {content}
+                  {comment}
                 </textarea>
                 <button
                   type="submit"

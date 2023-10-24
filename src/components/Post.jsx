@@ -100,10 +100,10 @@ function Post({ author, publishedAt, content }) {
       </form>
 
       <div className={styles.commentList}>
-        {comments.map((comment) => {
+        {comments.map((comment, index) => {
           return (
             <Comment
-              key={comment}
+              key={index}
               content={comment}
               onDeleteComment={deleteComment}
               onEditComment={editComment}

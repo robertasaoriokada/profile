@@ -4,7 +4,7 @@ import styles from "./Comment.module.css";
 import * as Icon from "@phosphor-icons/react";
 
 function Comment({ content, onDeleteComment, onEditComment }) {
-  const [editComment, setEditComment] = useState(content);
+  const [comment, setComment] = useState(content);
   const [pressEditButton, setPressEditButton] = useState(false);
   const showEditCommentCamp = () => {
     console.log(pressEditButton);
@@ -17,13 +17,13 @@ function Comment({ content, onDeleteComment, onEditComment }) {
   const handleEditComment = () => {
     event.preventDefault();
     const editedContent = event.target.editComment.value;
-    setEditComment((prev) => {
+    setComment((prev) => {
       return editedContent;
     });
     console.log(editedContent);
     console.log("conteúdo original" + content);
-    console.log("conteúdo para editar:" + editComment);
-    onEditComment(content, editComment);
+    console.log("conteúdo para editar:" + comment);
+    onEditComment(content, comment);
     setPressEditButton(false);
   };
   return (
@@ -70,7 +70,7 @@ function Comment({ content, onDeleteComment, onEditComment }) {
                 </button>
               </form>
             ) : (
-              <p>{content}</p>
+              <p>{comment}</p>
             )}
           </div>
         </div>

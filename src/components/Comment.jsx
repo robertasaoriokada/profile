@@ -4,6 +4,7 @@ import styles from "./Comment.module.css";
 import * as Icon from "@phosphor-icons/react";
 
 function Comment({ content, onDeleteComment, onEditComment }) {
+  const [editComment, setEditComment] = useState(content);
   const [pressEditButton, setPressEditButton] = useState(false);
   const showEditCommentCamp = () => {
     console.log(pressEditButton);
@@ -12,8 +13,18 @@ function Comment({ content, onDeleteComment, onEditComment }) {
   const handleDeleteComment = () => {
     onDeleteComment(content);
   };
+
   const handleEditComment = () => {
-    onEditComment(content);
+    event.preventDefault();
+    const editedContent = event.target.editComment.value;
+    setEditComment((prev) => {
+      return editedContent;
+    });
+    console.log(editedContent);
+    console.log("conteúdo original" + content);
+    console.log("conteúdo para editar:" + editComment);
+    onEditComment(content, editComment);
+    setPressEditButton(false);
   };
   return (
     <div className={styles.comment}>
@@ -47,14 +58,13 @@ function Comment({ content, onDeleteComment, onEditComment }) {
           </header>
           <div>
             {pressEditButton ? (
-              <form className={styles.editForm}>
+              <form onSubmit={handleEditComment} className={styles.editForm}>
                 <textarea name="editComment" className={styles.editCamp}>
                   {content}
                 </textarea>
                 <button
                   type="submit"
                   className={styles.buttonToSendEditedComment}
-                  onClick={handleEditComment}
                 >
                   Editar
                 </button>

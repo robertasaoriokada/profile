@@ -6,7 +6,9 @@ import ptBR from "date-fns/locale/pt-BR";
 import { useState } from "react";
 
 function Post({ author, publishedAt, content }) {
-  const [comments, setComments] = useState(["Post muito bacana"]);
+  const [comments, setComments] = useState([
+    "Olá, prazer, meu nome é Roberta Okada, venha conversar comigo sobre tecnologia e inoção!",
+  ]);
   const [newCommentText, setNewCommentText] = useState("");
   const publishedDateFormatted = new Intl.DateTimeFormat("pt-BR", {
     day: "2-digit",
@@ -45,11 +47,15 @@ function Post({ author, publishedAt, content }) {
     console.log(`Deletar comentároio ${commentToDelete}`);
   };
 
-  const editComment = (commentToEdit) => {
-    const commentsWithEditedOne = comments.filter((comment) => {
-      return comment;
+  const editComment = (oldComment, commentToEdit) => {
+    console.log("edit comment" + oldComment);
+    console.log(commentToEdit);
+    const commentsWithoutDeletedOne = comments.filter((comment) => {
+      return comment !== oldComment;
     });
-    setComments(commentsWithEditedOne);
+    setComments([...commentsWithoutDeletedOne, commentToEdit]);
+    console.log(comments);
+
     console.log("Editado");
   };
   return (
